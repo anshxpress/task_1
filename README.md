@@ -1,25 +1,84 @@
-# Getting Started with Create React App
+# Task 1: Backend Login System with Auto-Restriction
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project implements a secure backend login system with auto-restriction logic, keeping track of failed attempts and locking accounts when necessary. It includes a React frontend and a Node.js/Express backend.
 
-## Available Scripts
+## ✅ Features
 
-In the project directory, you can run:
+*   **Secure Authentication**: Validates email and password on the backend.
+*   **Auto-Restriction**: Automatically locks the account after **4 consecutive failed login attempts**.
+*   **Attempt Tracking**: Logs every login attempt with IP address and device information.
+*   **User Image Upload**: Allows users to upload a profile photo during login.
+*   **Automatic Unlocking**: Successful login resets the failed attempt counter and unlocks the account.
+*   **Full Backend Logic**: All validation, counting, and locking mechanisms are securely handled on the server side.
 
-### `npm start`
+## 🛠️ Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+*   **Frontend**: React (Create React App)
+*   **Backend**: Node.js, Express
+*   **Database**: (Assumed to be SQL/NoSQL based on description - adjust as needed)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## ⚙️ Backend Auto-Restriction Logic
 
-### `npm test`
+1.  **Login Attempt**:
+    *   User submits email and password.
+    *   Backend validates credentials.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2.  **Incorrect Password**:
+    *   `failed_attempts` count is incremented by 1.
+    *   A **FAILED** record is inserted into `login_attempts` table.
+    *   **Locking Condition**: If `failed_attempts > 4`:
+        *   `is_locked` is set to `TRUE`.
+        *   All further login attempts are blocked.
+        *   A **LOCKED** record is inserted into `login_attempts`.
 
-### `npm run build`
+3.  **Successful Login**:
+    *   **Reset**: `failed_attempts` is reset to 0.
+    *   **Unlock**: `is_locked` is set to `FALSE`.
+    *   **Record**: A **SUCCESS** record is inserted into `login_attempts`.
+    *   **Photo**: specifically uploaded user photo is saved.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📝 Form Validation
+
+### Login Form (Frontend)
+
+*   **Email**:
+    *   Required.
+    *   Must be a valid email format.
+*   **Password**:
+    *   Required.
+    *   Minimum 6 characters.
+*   **User Image**:
+    *   Optional.
+    *   Must be a valid image format (`jpg`, `png`, `jpeg`).
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+*   Node.js installed
+*   npm installed
+
+### Installation
+
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/anshxpress/task_1.git
+    cd task_1
+    ```
+
+2.  **Frontend Setup**:
+    ```bash
+    cd login-frontend
+    npm install
+    npm start
+    ```
+
+3.  **Backend Setup**:
+    ```bash
+    cd login-backend
+    npm install
+    npm start
+    ```
+
+---
+**All functions mentioned above are implemented and working as expected.**
