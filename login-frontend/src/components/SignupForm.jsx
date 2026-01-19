@@ -47,67 +47,113 @@ const SignupForm = ({ switchToLogin }) => {
         padding: "20px",
         border: "1px solid #ccc",
         borderRadius: "8px",
+        backgroundColor: "#fff",
+        boxShadow: "0 4px 6px rgba(0,0,0,0.1)"
       }}
     >
-      <h2 style={{ textAlign: "center" }}>Sign Up</h2>
+      <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Sign Up</h2>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {success && <p style={{ color: "green" }}>{success}</p>}
+      {error && (
+        <div style={{
+          backgroundColor: '#fee2e2',
+          color: '#dc2626',
+          padding: '10px',
+          borderRadius: '4px',
+          marginBottom: '10px'
+        }}>
+          {error}
+        </div>
+      )}
 
-      <input
-        type="text"
-        placeholder="Full Name"
-        value={fullName}
-        onChange={(e) => setFullName(e.target.value)}
-        required
-        style={{ width: "100%", padding: "8px" }}
-      />
+      {success && (
+        <div style={{
+          backgroundColor: '#d1fae5',
+          color: '#059669',
+          padding: '10px',
+          borderRadius: '4px',
+          marginBottom: '10px'
+        }}>
+          {success}
+        </div>
+      )}
 
-      <br /><br />
+      <div style={{ marginBottom: "15px" }}>
+        <label style={{ display: "block", marginBottom: "5px" }}>Full Name</label>
+        <input
+          type="text"
+          placeholder="Enter your full name"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+          required
+          style={{
+            width: "100%",
+            padding: "10px",
+            borderRadius: "4px",
+            border: "1px solid #ddd",
+            boxSizing: "border-box"
+          }}
+        />
+      </div>
 
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-        style={{ width: "100%", padding: "8px" }}
-      />
+      <div style={{ marginBottom: "15px" }}>
+        <label style={{ display: "block", marginBottom: "5px" }}>Email</label>
+        <input
+          type="email"
+          placeholder="Enter your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          style={{
+            width: "100%",
+            padding: "10px",
+            borderRadius: "4px",
+            border: "1px solid #ddd",
+            boxSizing: "border-box"
+          }}
+        />
+      </div>
 
-      <br /><br />
-
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        minLength={6}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-        style={{ width: "100%", padding: "8px" }}
-      />
-
-      <br /><br />
+      <div style={{ marginBottom: "20px" }}>
+        <label style={{ display: "block", marginBottom: "5px" }}>Password</label>
+        <input
+          type="password"
+          placeholder="Enter your password"
+          value={password}
+          minLength={6}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+          style={{
+            width: "100%",
+            padding: "10px",
+            borderRadius: "4px",
+            border: "1px solid #ddd",
+            boxSizing: "border-box"
+          }}
+        />
+      </div>
 
       <button
         type="submit"
         style={{
           width: "100%",
-          padding: "10px",
+          padding: "12px",
           backgroundColor: "#28a745",
           color: "#fff",
           border: "none",
           borderRadius: "4px",
           cursor: "pointer",
+          fontSize: "16px",
+          fontWeight: "bold"
         }}
       >
         Register
       </button>
 
-      <p style={{ marginTop: "10px", textAlign: "center" }}>
+      <p style={{ marginTop: "15px", textAlign: "center" }}>
         Already have an account?{" "}
         <span
           onClick={switchToLogin}
-          style={{ color: "blue", cursor: "pointer" }}
+          style={{ color: "#28a745", cursor: "pointer", fontWeight: "bold" }}
         >
           Login
         </span>
